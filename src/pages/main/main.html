@@ -15,6 +15,10 @@
 
 <ion-content padding>
 
-Whee
+  <ul>
+    <li *ngFor="let doc of pub | async">
+       {{ doc | json }}
+    </li>
+  </ul>
 
 </ion-content>

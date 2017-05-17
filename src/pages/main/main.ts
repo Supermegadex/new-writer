@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 /**
  * Generated class for the Main page.
@@ -14,11 +15,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Main {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  pub: FirebaseListObservable<any[]>;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireDatabase) {
+    this.pub = db.list('public');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Main');
+    this.pub.subscribe(snapshot => {
+      console.log(snapshot);
+    })
   }
 
 }
